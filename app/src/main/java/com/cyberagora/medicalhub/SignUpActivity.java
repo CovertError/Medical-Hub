@@ -21,10 +21,12 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; //initialize firebase
     private FirebaseUser user;  //Reference to the user
 
+    private EditText signUser;
     private EditText signEmail; //To get reference from the UI TextBox
     private EditText signPass;  //
     private EditText signRePass;//
 
+    private String username;
     private String email;
     private String pass;
     private String rePass;
@@ -37,12 +39,14 @@ public class SignUpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void signUpF(View view)
+    public void signUpF(View view)
     {
+        signUser = (EditText) findViewById(R.id.sign_username);
         signEmail = (EditText) findViewById(R.id.sign_email);
         signPass = (EditText) findViewById(R.id.sign_pass);
         signRePass = (EditText) findViewById(R.id.sign_repass);
 
+        username = signUser.getText().toString();
         email = signEmail.getText().toString();
         pass = signPass.getText().toString();
         rePass = signRePass.getText().toString();
@@ -50,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         if(isValidEmail(email) == true) //Checks if email is valid
         {
             //TODO add to check if username is also different from all the usernames in database
-            if (pass == rePass && pass.length() >= 5)   //Criteria for email
+            if ((pass.equals(rePass)) && (pass.length() >= 6))   //Criteria for password
             {
                 mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()  //Method for creating user in firebase database
                 {
@@ -59,16 +63,17 @@ public class SignUpActivity extends AppCompatActivity {
                     {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            user = mAuth.getCurrentUser();
-                            Toast.makeText(SignUpActivity.this, "Authentication Successful.", Toast.LENGTH_SHORT).show();   //This is basically a pop up bubble that prints on screen
+                            //user = mAuth.getCurrentUser();
+
 
                             //TODO launch main menu activity after sign up with the user as parameter
+                            Toast.makeText(SignUpActivity.this, "Account Created!", Toast.LENGTH_LONG).show();  //Creates a popup message on screen
 
                         }
                         else
                         {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(SignUpActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SignUpActivity.this, "Account Creation Error!", Toast.LENGTH_LONG).show();   //Creates a popup message on screen
                         }
                     }
                 });
@@ -77,13 +82,13 @@ public class SignUpActivity extends AppCompatActivity {
             {
                 if(pass.length() < 5)   //Checks
                 {
-                    Toast.makeText(SignUpActivity.this, "Password should be 5 characters long or more...", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this, "Password should be 6 characters long or more...", Toast.LENGTH_LONG).show();   //Creates a popup message on screen
                     signPass.setText("");
                     signRePass.setText("");
                 }
                 else
                 {
-                    Toast.makeText(SignUpActivity.this, "Passwords don't match!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignUpActivity.this, "Passwords don't match!", Toast.LENGTH_LONG).show();    //Creates a popup message on screen
                     signPass.setText("");
                     signRePass.setText("");
                 }
@@ -92,7 +97,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
         else
         {
-            Toast.makeText(SignUpActivity.this, "Invalid Email!", Toast.LENGTH_LONG).show();
+            Toast.makeText(SignUpActivity.this, "Invalid Email!", Toast.LENGTH_LONG).show();    //Creates a popup message on screen
             signEmail.setText("");
         }
     }

@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         if(currentUser != null) //Checks if the user is already logged in
         {
-            Toast.makeText(MainActivity.this, "Already logged in!", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, "Already logged in!", Toast.LENGTH_LONG).show();  //Creates a popup message on screen
             //TODO launch main menu activity with current user as parameter
         }
     }

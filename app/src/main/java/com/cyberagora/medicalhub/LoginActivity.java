@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     private EditText loginEmail;
     private EditText loginPass;
@@ -37,27 +38,30 @@ public class LoginActivity extends AppCompatActivity {
         loginPass = (EditText) findViewById(R.id.login_pass);
 
         email = loginEmail.getText().toString();
-        pass = loginEmail.getText().toString();
+        pass = loginPass.getText().toString();
 
-        mAuth.signInWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>()
-                {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task)
-                    {
-                        if (task.isSuccessful())
-                        {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //TODO launch the main menu activity, giving the user as a parameter
-                        }
-                        else
-                        {
-                            // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+        if(!email.equals("") && pass.length() >= 5)
+        {
+            mAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        // Sign in success, update UI with the signed-in user's information
 
-                        }
+                        user = mAuth.getCurrentUser();
+                        //TODO launch the main menu activity, giving the user as a parameter
+                        Toast.makeText(LoginActivity.this, "Logged In!", Toast.LENGTH_SHORT).show();    //Creates a popup message on screen
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();    //Creates a popup message on screen
+
                     }
-                });
+                }
+            });
+        }
+        else
+        {
+            Toast.makeText(LoginActivity.this, "Invalid Email or Password!.", Toast.LENGTH_SHORT).show();    //Creates a popup message on screen
+        }
     }
 }
