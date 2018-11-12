@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         currentUser = mAuth.getCurrentUser();
         if(currentUser != null) //Checks if the user is already logged in
         {
+            Toast.makeText(MainActivity.this, "Already logged in!", Toast.LENGTH_LONG).show();
             //TODO launch main menu activity with current user as parameter
         }
     }
