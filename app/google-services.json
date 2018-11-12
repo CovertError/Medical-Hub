@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "586972365528",
+    "firebase_url": "https://medicalhub-5f58b.firebaseio.com",
+    "project_id": "medicalhub-5f58b",
+    "storage_bucket": "medicalhub-5f58b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586972365528:android:b561587528b17db1",
+        "android_client_info": {
+          "package_name": "com.cyberagora.medicalhub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586972365528-di81q383k8nidn791fu75u6rdbf7k4t9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cyberagora.medicalhub",
+            "certificate_hash": "c8d60da7b33a0bf37d60c2e52d61f8bdb19b96ef"
+          }
+        },
+        {
+          "client_id": "586972365528-qqus5ltd2917o7re13rq3og5ajgkbcdn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTOFs1zTy26DgICa0P5cUq1Ux49lZHTGg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586972365528-qqus5ltd2917o7re13rq3og5ajgkbcdn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

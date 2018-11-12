@@ -22,10 +22,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/login-pass" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/login-pass"
         style="@android:style/Animation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,10 +41,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title.Inverse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/login-email" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/login-email"
         style="@android:style/Animation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,8 +54,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title.Inverse"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
