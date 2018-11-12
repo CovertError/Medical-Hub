@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Medical Hub</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign Up</string>
+</resources>
