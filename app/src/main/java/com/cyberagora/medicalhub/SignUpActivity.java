@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(isValidEmail(email) == true) //Checks if email is valid
         {
-            //TODO add to check if username is also different from all the usernames in database
+            //TODO check if username is also different from all the usernames in database
             if ((pass.equals(rePass)) && (pass.length() >= 6))   //Criteria for password
             {
                 mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()  //Method for creating user in firebase database
