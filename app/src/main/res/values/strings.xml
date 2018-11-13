@@ -2,4 +2,9 @@
     <string name="app_name">Medical Hub</string>
     <string name="login">Login</string>
     <string name="signup">Sign Up</string>
+    <string name="guest">Continue as Guest</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="repassword">Re-Type Password</string>
 </resources>

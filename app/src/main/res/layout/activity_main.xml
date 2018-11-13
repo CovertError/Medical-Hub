@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/main_guest_but"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -18,16 +18,16 @@
         android:layout_marginRight="16dp"
         android:background="@android:color/background_light"
         android:onClick="guest"
-        android:text="COUNTINUE AS GUEST"
+        android:text="@string/guest"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/main_signup_but" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="218dp"
+        android:id="@+id/main_signup_but"
+        android:layout_width="216dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
@@ -39,12 +39,11 @@
         android:text="@string/signup"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/main_login_but" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/main_login_but"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="218dp"
         android:layout_height="wrap_content"
