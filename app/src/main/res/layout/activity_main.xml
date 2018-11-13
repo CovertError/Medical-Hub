@@ -17,6 +17,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@android:color/background_light"
+        android:onClick="guest"
         android:text="COUNTINUE AS GUEST"
         android:textColor="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"

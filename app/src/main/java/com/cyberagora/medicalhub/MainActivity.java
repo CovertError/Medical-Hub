@@ -44,9 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void signUp(View view)
     {
-
-
         Intent intent = new Intent(this, SignUpActivity.class);
         startActivity(intent);
+    }
+
+    public void guest(View view)
+    {
+        //TODO launch main menu as no user
     }
 }
