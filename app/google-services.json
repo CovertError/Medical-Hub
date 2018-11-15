@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "586972365528-chskcn779hmoroghfqd1jbntmu95s0v5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cyberagora.medicalhub",
+            "certificate_hash": "c15dfe6af2f1b4fff5cfaf0cdd57373a1679e42a"
+          }
+        },
+        {
           "client_id": "586972365528-qqus5ltd2917o7re13rq3og5ajgkbcdn.apps.googleusercontent.com",
           "client_type": 3
         }

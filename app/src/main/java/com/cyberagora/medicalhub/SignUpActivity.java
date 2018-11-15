@@ -13,6 +13,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -21,6 +23,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth; //initialize firebase
     private FirebaseUser user;  //Reference to the user
+    FirebaseFirestore db; //Reference to database
 
     private EditText signUser;
     private EditText signEmail; //To get reference from the UI TextBox
@@ -38,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
     }
 
     public void signUpF(View view)
@@ -64,8 +68,10 @@ public class SignUpActivity extends AppCompatActivity {
                     {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            //user = mAuth.getCurrentUser();
+                            user = mAuth.getCurrentUser();
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
 
+                            user.updateProfile(profileUpdates);
 
                             //TODO launch main menu activity after sign up with the user as parameter
                             Toast.makeText(SignUpActivity.this, "Account Created!", Toast.LENGTH_LONG).show();  //Creates a popup message on screen

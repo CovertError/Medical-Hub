@@ -21,6 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginEmail;
     private EditText loginPass;
 
+    private String displayName;
     private String email;
     private String pass;
 
@@ -49,6 +50,10 @@ public class LoginActivity extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
 
                         user = mAuth.getCurrentUser();
+                        if (user != null) {
+                            displayName = user.getDisplayName().toString();
+                        }
+
                         //TODO launch the main menu activity, giving the user as a parameter
                         Toast.makeText(LoginActivity.this, "Logged In!", Toast.LENGTH_SHORT).show();    //Creates a popup message on screen
                     } else {
