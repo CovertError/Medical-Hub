@@ -1,5 +1,6 @@
 package com.cyberagora.medicalhub;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +24,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth; //initialize firebase
     private FirebaseUser user;  //Reference to the user
-    FirebaseFirestore db; //Reference to database
+    private FirebaseFirestore db; //Reference to database
 
     private EditText signUser;
     private EditText signEmail; //To get reference from the UI TextBox
@@ -67,14 +68,21 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Set Username
                             user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
-
                             user.updateProfile(profileUpdates);
 
-                            //TODO launch main menu activity after sign up with the user as parameter
-                            Toast.makeText(SignUpActivity.this, "Account Created!", Toast.LENGTH_LONG).show();  //Creates a popup message on screen
+                            //Send Verification Email
+                            sendVerificationEmail();
+
+                            //Logout
+                            mAuth.signOut();
+
+                            finish();
+                            //Launch Login Activity
+                            Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                            startActivity(intent);
 
                         }
                         else {
@@ -123,5 +131,28 @@ public class SignUpActivity extends AppCompatActivity {
             result = false;
         }
         return result;
+    }
+
+    private void sendVerificationEmail()
+    {
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>()
+                {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task)
+                    {
+                        if (task.isSuccessful())
+                        {
+                            // Email sent
+                            Toast.makeText(SignUpActivity.this, "Verification Email Sent!", Toast.LENGTH_LONG).show();    //Creates a popup message on screen
+                        }
+                        else
+                        {
+                            //Email not sent
+                            Toast.makeText(SignUpActivity.this, "Verification Email not Sent!", Toast.LENGTH_LONG).show();    //Creates a popup message on screen
+                        }
+                    }
+                });
     }
 }

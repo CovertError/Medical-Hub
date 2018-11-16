@@ -47,15 +47,25 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        // Sign in success, update UI with the signed-in user's information
-
+                        // Sign in success
+                        //Check Email Verification
                         user = mAuth.getCurrentUser();
-                        if (user != null) {
-                            displayName = user.getDisplayName().toString();
+                        if(user.isEmailVerified())
+                        {
+                            if (user != null) {
+                                displayName = user.getDisplayName().toString();
+                            }
+                            Toast.makeText(LoginActivity.this, "Logged In!", Toast.LENGTH_SHORT).show();
+                            //TODO launch the main menu activity
+                        }
+                        else
+                        {
+                            Toast.makeText(LoginActivity.this, "Please verify your email" +
+                                    "!", Toast.LENGTH_SHORT).show();
+                            mAuth.signOut();
                         }
 
-                        //TODO launch the main menu activity, giving the user as a parameter
-                        Toast.makeText(LoginActivity.this, "Logged In!", Toast.LENGTH_SHORT).show();    //Creates a popup message on screen
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();    //Creates a popup message on screen

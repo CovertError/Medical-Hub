@@ -28,11 +28,12 @@ public class MainActivity extends AppCompatActivity {
     public void onStart()
     {
         super.onStart();
+        //Check if the user is already logged in
         currentUser = mAuth.getCurrentUser();
         if(currentUser != null) //Checks if the user is already logged in
         {
             Toast.makeText(MainActivity.this, "Already logged in!", Toast.LENGTH_LONG).show();  //Creates a popup message on screen
-            //TODO launch main menu activity with current user as parameter
+            //TODO launch main menu activity
         }
     }
 
