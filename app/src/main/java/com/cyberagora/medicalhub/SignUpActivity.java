@@ -45,13 +45,21 @@ public class SignUpActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
     }
 
-    public void signUpF(View view)
+    @Override
+    public void onStart()
     {
+        super.onStart();
+
         signUser = (EditText) findViewById(R.id.sign_username);
         signEmail = (EditText) findViewById(R.id.sign_email);
         signPass = (EditText) findViewById(R.id.sign_pass);
         signRePass = (EditText) findViewById(R.id.sign_repass);
 
+        signUser.requestFocus();    //Sets the typing cursor to the username text box
+    }
+
+    public void signUpF(View view)
+    {
         username = signUser.getText().toString();
         email = signEmail.getText().toString();
         pass = signPass.getText().toString();

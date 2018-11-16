@@ -33,11 +33,19 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
     }
 
-    public void loginF(View view)
+    @Override
+    public void onStart()
     {
+        super.onStart();
+
         loginEmail = (EditText) findViewById(R.id.login_email);
         loginPass = (EditText) findViewById(R.id.login_pass);
 
+        loginEmail.requestFocus();  //Sets the typing cursor to the email text box
+    }
+
+    public void loginF(View view)
+    {
         email = loginEmail.getText().toString();
         pass = loginPass.getText().toString();
 
