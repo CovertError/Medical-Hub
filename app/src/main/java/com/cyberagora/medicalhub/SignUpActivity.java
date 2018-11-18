@@ -83,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
                     {
                         if (task.isSuccessful()) {
                             //TODO Actually recording the users in the database since its not this will be commented
-                            //github edited by fixed to CovertError
+                            //github edited by fixed to CovertError maybe
                             /*dbRef.child("users").child("username").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
