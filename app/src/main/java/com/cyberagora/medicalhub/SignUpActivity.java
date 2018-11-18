@@ -82,7 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
                         if (task.isSuccessful()) {
-                            //TODO Actually recording the users in the database
+                            //TODO Actually recording the users in the database since its not this will be commented
                             /*dbRef.child("users").child("username").addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
