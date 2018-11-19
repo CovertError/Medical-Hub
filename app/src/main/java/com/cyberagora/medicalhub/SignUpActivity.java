@@ -15,13 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
@@ -31,7 +25,6 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth mAuth; //initialize firebase
     private FirebaseUser user;  //Reference to the user
     private FirebaseFirestore db; //Reference to database
-    private DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
 
     private EditText signUser;
     private EditText signEmail; //To get reference from the UI TextBox
@@ -82,40 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task)
                     {
                         if (task.isSuccessful()) {
-                            //TODO Actually recording the users in the database since its not this will be commented
-                            //problem checking
-                            /*dbRef.child("users").child("username").addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    if(dataSnapshot.exists()){
-                                        Toast.makeText(SignUpActivity.this, "UserName Exists", Toast.LENGTH_LONG).show();   //Creates a popup message on screen
-                                    } else {
-                                        // Set Username
-                                        user = mAuth.getCurrentUser();
-                                        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
-                                        user.updateProfile(profileUpdates);
-
-                                        //Send Verification Email
-                                        sendVerificationEmail();
-
-                                        //Logout
-                                        mAuth.signOut();
-
-                                        finish();
-                                        //Launch Login Activity
-                                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
-                                        startActivity(intent);
-
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-                                    Toast.makeText(SignUpActivity.this, "DataBaseError!", Toast.LENGTH_LONG).show();   //Creates a popup message on screen
-                                }
-                            });
-
-                            */
+                            //TODO Actually recording the users in the database
                             // Set Username
                             user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
