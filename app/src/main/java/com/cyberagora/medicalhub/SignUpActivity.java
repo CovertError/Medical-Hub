@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import javax.mail.internet.AddressException;
@@ -67,6 +68,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(isValidEmail(email)) //Checks if email is valid
         {
+
             if ((pass.equals(rePass)) && (pass.length() >= 6))   //Criteria for password
             {
                 mAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener(this, new OnCompleteListener<AuthResult>()  //Method for creating user in firebase database

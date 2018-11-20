@@ -17,7 +17,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".MainActivityPage" />
+        <activity android:name=".HospitalSearchActivity"></activity>
     </application>
 
 </manifest>
