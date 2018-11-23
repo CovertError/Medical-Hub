@@ -52,5 +52,7 @@ public class MainActivity extends AppCompatActivity {
     public void guest(View view)
     {
         //TODO launch main menu as no user
+        Intent intent = new Intent(this, LocationSelect.class);
+        startActivity(intent);
     }
 }

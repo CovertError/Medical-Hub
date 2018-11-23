@@ -19,7 +19,8 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".MainActivityPage" />
-        <activity android:name=".HospitalSearchActivity"></activity>
+        <activity android:name=".HospitalSearchActivity" />
+        <activity android:name=".LocationSelect"></activity>
     </application>
 
 </manifest>
