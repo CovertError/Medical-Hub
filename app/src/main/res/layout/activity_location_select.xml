@@ -11,18 +11,18 @@
         android:id="@+id/relativeLayout1"
         android:layout_width="302dp"
         android:layout_height="66dp"
-        android:layout_marginTop="129dp"
-        android:layout_marginBottom="352dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginBottom="125dp"
         android:background="#FFFFFF"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.19">
 
         <Spinner
-            android:id="@+id/spinnerCountry"
+            android:id="@+id/spinnerState"
             style="@style/Widget.AppCompat.DropDownItem.Spinner"
             android:layout_width="match_parent"
             android:layout_height="70dp" />
@@ -45,33 +45,10 @@
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout1">
 
         <Spinner
-            android:id="@+id/spinnerState"
-            style="@style/Widget.AppCompat.DropDownItem.Spinner"
-            android:layout_width="match_parent"
-            android:layout_height="70dp" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="302dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginLeft="41dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginRight="41dp"
-        android:background="#FFFFFF"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
-
-        <Spinner
             android:id="@+id/spinnerArea"
             style="@style/Widget.AppCompat.DropDownItem.Spinner"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:dropDownWidth="match_parent" />
+            android:layout_height="70dp" />
     </RelativeLayout>
 
     <Button
@@ -80,14 +57,17 @@
         android:layout_height="56dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="114dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="114dp"
         android:background="@android:color/holo_green_light"
-        android:text="Go!"
+        android:onClick="go"
+        android:text="@string/Go"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
 
 
 </android.support.constraint.ConstraintLayout>

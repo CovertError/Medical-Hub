@@ -7,4 +7,5 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="repassword">Re-Type Password</string>
+    <string name="Go">Go</string>
 </resources>

@@ -18,9 +18,11 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivityPage" />
-        <activity android:name=".HospitalSearchActivity" />
-        <activity android:name=".LocationSelect"></activity>
+        <activity android:name=".Testing" />
+        <activity android:name=".LocationSelect" />
+        <activity android:name=".RatingActivity" />
+        <activity android:name=".HospitalListActivity" />
+        <activity android:name=".HospitalListView"></activity>
     </application>
 
 </manifest>

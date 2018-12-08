@@ -1,5 +1,7 @@
 package com.cyberagora.medicalhub;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,70 +9,92 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class LocationSelect extends AppCompatActivity {
 
-    private Spinner spinnerCountry;
     private Spinner spinnerState;
     private Spinner spinnerArea;
-    private static final String[] countries = {"item 1", "item 2", "item 3"};
-    private static final String[] states = {"item 1", "item 2", "item 3"};
-    private static final String[] areas = {"item 1","item 2", "item 3"};
+    private static final String[] states = {"Abu Dhabi","Dubai"};
+    private ArrayList<String> areas;
+    private String selectedState;
+    private String selectedArea;
+
+    FirebaseFirestore db; //Reference to database
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location_select);
 
-        spinnerCountry = (Spinner)findViewById(R.id.spinnerCountry);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(LocationSelect.this,
-                android.R.layout.simple_spinner_item,countries);
+        db = FirebaseFirestore.getInstance();
 
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerCountry.setAdapter(adapter1);
-        spinnerCountry.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
-
+        //dropdown list for states
         spinnerState = (Spinner)findViewById(R.id.spinnerState);
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(LocationSelect.this,
-                android.R.layout.simple_spinner_item,states);
+        ArrayAdapter<String> stateAdapter = new ArrayAdapter<String>(LocationSelect.this,android.R.layout.simple_spinner_item,states);
+        stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerState.setAdapter(stateAdapter);
 
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerState.setAdapter(adapter2);
+        //When a change is made in the dropdown
         spinnerState.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-            }
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //Log.v("item", (String) parent.getItemAtPosition(position));
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-            }
-        });
+                selectedState=(String) parent.getItemAtPosition(position);      //the selected state is stored in a variable
 
-        spinnerArea = (Spinner)findViewById(R.id.spinnerArea);
-        ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(LocationSelect.this,
-                android.R.layout.simple_spinner_item,areas);
+                //getting the document that conatins arrays listing Areas in each state
+                db.collection("country").document("uae").get()
+                        .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
 
-        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerArea.setAdapter(adapter3);
-        spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
+                                if(task.isSuccessful())
+                                {
+                                    //getting all the results and maping the data
+                                    DocumentSnapshot document = task.getResult();
+                                    Map<String, Object> map = document.getData();
+
+                                    //looping through the map
+                                    for (Map.Entry<String, Object> entry : map.entrySet()) {
+                                        //finding the selected state in the list of states
+                                        if (entry.getKey().equals(selectedState)) {
+
+                                            areas = (ArrayList<String>) entry.getValue();   //array list will contain all areas in the state
+
+                                            //dropdown for areas
+                                            spinnerArea = (Spinner)findViewById(R.id.spinnerArea);
+                                            ArrayAdapter<String> areaAdapter = new ArrayAdapter<String>(LocationSelect.this, android.R.layout.simple_spinner_item,areas);
+                                            areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                            spinnerArea.setAdapter(areaAdapter);
+
+                                            spinnerArea.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                                @Override
+                                                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                    //Log.v("item", (String) parent.getItemAtPosition(position));
+                                                    selectedArea=(String) parent.getItemAtPosition(position);       //setting variable as the selected area
+                                                }
+
+                                                @Override
+                                                public void onNothingSelected(AdapterView<?> parent) {
+                                                    // TODO Auto-generated method stub
+                                                }
+                                            });
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        });
             }
 
             @Override
@@ -79,6 +103,14 @@ public class LocationSelect extends AppCompatActivity {
             }
         });
     }
+
+    public void go(View view){
+        Intent intent = new Intent(this,HospitalListActivity.class);
+        intent.putExtra("selectedState",selectedState);
+        intent.putExtra("selectedArea",selectedArea);
+        startActivity(intent);
+    }
+
 
 
 }
